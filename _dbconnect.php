@@ -2,7 +2,7 @@
 $severName = 'localhost';
 $userName = 'root';
 $pass = '';
-$dbName = '<dataBaseName>';
+$dbName = 'forcomment';
 
 $conn = mysqli_connect($severName,$userName,$pass,$dbName);
 

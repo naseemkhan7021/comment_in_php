@@ -1,4 +1,6 @@
 <?php
+    error_reporting();
+
 //  date formeting function
 function dateFormet ($data){
     // echo $data;
@@ -7,11 +9,12 @@ function dateFormet ($data){
 // global $comment_id;
 
 function replayfunctions($commentId){
+    
     global $index;
     // echo ' id is ---> ' . $commentId;
-    // require '_dbconnect.php';
+    require '_dbconnect.php';
 
-    // $sqli = "SELECT `user_name`, `content`, `replay`.`id`, `replay`.`user_id`, `parant_id`, `replay`.`date` FROM `replay` INNER JOIN `users` ON `replay`.`user_id` = `users`.`user_id` WHERE `parant_id` = $commentId";
+    $sqli = "SELECT `user_name`, `content`, `replay`.`id`, `replay`.`user_id`, `parant_id`, `replay`.`date` FROM `replay` INNER JOIN `users` ON `replay`.`user_id` = `users`.`user_id` WHERE `parant_id` = $commentId";
 
     $result = mysqli_query($conn,$sqli);
     $numOfRow = mysqli_num_rows($result);
@@ -21,7 +24,7 @@ function replayfunctions($commentId){
             $replay .= '
             <div class="row my-4">
                 <div class="col-1 text-center">
-                    <img src="img/userdefault.png" class="rounded" alt="userimg" width="54px">
+                    <img src="./userdefault.png" class="rounded" alt="userimg" width="54px">
                 </div>
                 <div class="col-11 textc">
                     <div><b>'.$data['user_name'] .'</b><small>  | '. dateFormet($data['date']) .' </small></div>
@@ -44,7 +47,7 @@ function replayfunctions($commentId){
                         <div class="ms-2">
                             <a class="replaybtn" style="cursor:pointer;">REPLAY</a> 
                             <div class="form mt-3" id="replayinput-'. $index .'" style="display:none;">
-                                <img src="img/userdefault.png" class="rounded" alt="userimg" width="25px">
+                                <img src="./userdefault.png" class="rounded" alt="userimg" width="25px">
                                 <form style="display: -webkit-inline-box;" class="d-inline-box" action="'. $_SERVER['REQUEST_URI'] .'" method="post">
                                     <div class="input-group mb-3">
                                         <input type="hidden" value="'. $data['id'] .'" name="parentComment">
@@ -91,7 +94,7 @@ function commentAndReplayTeplat($data){
     $responce =  '
         <div class="row my-4">
             <div class="col-1 text-center">
-                <img src="img/userdefault.png" class="rounded" alt="userimg" width="54px">
+                <img src="./userdefault.png" class="rounded" alt="userimg" width="54px">
             </div>
             <div class="col-11 textc">
                 <div><b>'. $posted_userName .'</b><small>  | '. dateFormet($comment_date) .' </small></div>
@@ -114,7 +117,7 @@ function commentAndReplayTeplat($data){
                     <div class="ms-2">
                         <a class="replaybtn" style="cursor:pointer;">REPLAY</a> 
                         <div class="form mt-3" id="replayinput-'. $index .'" style="display:none;">
-                            <img src="img/userdefault.png" class="rounded" alt="userimg" width="25px">
+                            <img src="./userdefault.png" class="rounded" alt="userimg" width="25px">
                             <form style="display: -webkit-inline-box;" class="d-inline-box" action="'. $_SERVER['REQUEST_URI'] .'" method="post">
                                 <div class="input-group mb-3">
                                     <input type="hidden" value="'. $comment_id .'" name="parentComment">
